@@ -5,7 +5,7 @@
 **users(ユーザー) Table:**
 |Column|Type|Option|
 |------|----|-------|
-|id|integer||
+|id|integer| |
 |name|string|index: true, null: false, unique: true|
 |email|string|null: false, unique: true|
 |password|string|null: false|
@@ -13,24 +13,24 @@
 **groups(チャートグループ) Table:**
 |Column|Type|Option|
 |------|----|-------|
-|id|integer||
+|id|integer| |
 |name|string|null: false, unique: true|
 
 **members(チャートメンバー) Table:**
 |Column|Type|Option|
 |------|----|-------|
-|id|integer||
+|id|integer| |
 |user_id|reference|null: false, foreign_key: true|
 |group_id|reference|null: false, foreign_key: true|
 
 **messages(チャートメッセージ) Table:**
 |Column|Type|Option|
 |------|----|-------|
-|id|integer||
+|id|integer| |
 |user_id|reference|null: false, foreign_key: true|
 |group_id|reference|null: false, foreign_key: true|
-|body|text||
-|image|string: BLOB||
+|body|text| |
+|image|string: BLOB| |
 
 
 # Association
