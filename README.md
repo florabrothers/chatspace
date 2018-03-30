@@ -1,24 +1,55 @@
-# README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
-Things you may want to cover:
+## users(ユーザー) Table:
 
-* Ruby version
+|Column|Type|Option|
+|------|----|-------|
+|id|integer|
+|name|string|index: true, null: false, unique: true|
+|email|string|null: false, unique: true|
+|password|string|null: false|
 
-* System dependencies
+**users Association**
+- has_many :groups, through: members
+- has many :messages
+- has many :members
 
-* Configuration
+## groups(チャートグループ) Table:
 
-* Database creation
+|Column|Type|Option|
+|------|----|-------|
+|id|integer|
+|name|string|null: false, unique: true|
 
-* Database initialization
+**groups Association**
+- has_many :users, through: members
+- has_many :messages
+- has_many :members
 
-* How to run the test suite
+## members(チャートメンバー) Table:
 
-* Services (job queues, cache servers, search engines, etc.)
+|Column|Type|Option|
+|------|----|-------|
+|id|integer|
+|user_id|reference|null: false, foreign_key: true|
+|group_id|reference|null: false, foreign_key: true|
 
-* Deployment instructions
+**members Association**
+- belongs_to :user
+- belongs_to :group
 
-* ...
+## messages(チャートメッセージ) Table:
+
+|Column|Type|Option|
+|------|----|-------|
+|id|integer|
+|user_id|reference|null: false, foreign_key: true|
+|group_id|reference|null: false, foreign_key: true|
+|body|text|
+|image|string: BLOB|
+
+**messages Association**
+- belongs_to :user
+- belongs_to :group
