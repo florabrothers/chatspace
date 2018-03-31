@@ -1,0 +1,5 @@
+@mixin box($bgColor, $height, $tPadding, $rPadding, $bPadding, $lPadding) {
+  background-color: $bgColor;
+  height: $height;
+  padding: $tPadding $rPadding $bPadding $lPadding;
+}

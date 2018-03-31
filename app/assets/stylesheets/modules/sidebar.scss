@@ -1,0 +1,55 @@
+@import "../config/variable";
+@import "../mixin/*";
+
+.sidebar {
+  @include borderBox;
+  height: 100%;
+  width: 300px;
+  float: left;
+  color: $fontClear;
+  //Start of header styling
+  & .header {
+    @include box(#253141, 100px, 0, 20px, 0, 20px);
+    line-height: 100px;
+
+    & .header__name {
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    & .header__list {
+      display: inline-block;
+      float: right;
+
+      & .list {
+        display: inline-block;
+      }
+
+      & .icon {
+        color: $fontClear;
+        font-size: 16px;
+      }
+    }
+  }
+  //Start of groups styling
+  & .groups {
+    @include box(#2f3e51, calc(100vh - 100px), 0, 20px, 0, 20px);
+
+    & .group {
+      @include borderBox;
+      padding: 20px 0 40px;
+
+      & .group__name {
+        color: $fontClear;
+        font-size: 15px;
+      }
+
+      & .group__message {
+        color: $fontClear;
+        font-size: 11px;
+        margin-top: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.sidebar
+  .header
+    %h3{class: "header__name"} Username
+    -# username will be dynamically generated
+    %ul{class: "header__list"}
+      %li{class: "list"}
+        %a{href: "http://www.mozilla.com/en-US/firefox/" }
+          -# replace button links in the future
+          %i{class: "fa fa-pencil-square-o icon"}
+      %li{class: "list"}
+        %a{href: "http://www.mozilla.com/en-US/firefox/" }
+          -# replace button links in the future
+          %i{class: "fa fa-cog icon"}
+  = render "group"
