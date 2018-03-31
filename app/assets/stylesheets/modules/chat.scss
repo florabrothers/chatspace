@@ -1,0 +1,127 @@
+@import "../config/variable";
+@import "../mixin/*";
+
+.chat {
+  @include borderBox;
+  background-color: $bgWhite;
+  height: 100%;
+  width: calc(100vw - 300px);
+  float: right;
+  // Start of header styling
+  & .header {
+    @include box ($bgWhite, 100px, 0, 40px, 0, 40px);
+
+    & .left-header {
+      float: left;
+
+      & .left-header__title {
+        color: $fontDark;
+        font-size: 20px;
+        margin-top: 35px;
+      }
+
+      & .left-header__members {
+        display: flex;
+        color: $fontGrey;
+        font-size: 12px;
+        margin-top: 15px;
+
+        & .member {
+          display: inline-block;
+          padding-left: 5px;
+        }
+      }
+    }
+
+    & .right-header {
+      @include box ($bgWhite, 40px, 0, 20px, 0, 20px);
+      line-height: 40px;
+      margin-top: 28px;
+      float: right;
+      border: 1px solid $skyBlue;
+      color: $skyBlue;
+
+      & .right-header__button {
+        color: $skyBlue;
+        text-decoration: none;
+      }
+    }
+  }
+  // Start of mesaages styling
+  & .messages {
+    @include borderBox;
+    @include box (#FAFAFA, calc(100vh - 100px - 90px), 46px, 40px, 0, 40px);
+    overflow: scroll;
+
+    & .message {
+      margin-bottom: 40px;
+
+      & .upper-message {
+        display: flex;
+
+        & .upper-message__username {
+          color: $fontDark;
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        & .upper-message__date {
+          color: $fontGrey;
+          font-size: 12px;
+          padding-left: 10px;
+          padding-top: 3px;
+        }
+      }
+
+      & .lower-message {
+        margin-top: 10px;
+
+        & .lower-message__content {
+          color: #fontDark;
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  // Start of form styling
+  & .form {
+    @include borderBox;
+    @include box ($fontGrey, 90px, 20px, 40px, 20px, 40px);
+  }
+
+  & .form__message {
+    @include box ($fontClear, 50px, 0, 10px, 0, 10px);
+    @include borderBox;
+    border: none;
+    float: left;
+    width: calc(100% - 150px);
+    outline: none;
+  }
+
+  & .form__mask {
+    @include box ($bgWhite, 50px, 0, 10px, 0, 0);
+    float: left;
+
+    & .form__mask__image {
+      font-size: 20px;
+      line-height: 50px;
+      cursor: pointer;
+    }
+
+    & .hidden {
+      display: none;
+    }
+  }
+
+  & .form__submit {
+    @include box ($skyBlue, 50px, 0, 30px, 0, 30px);
+    border: none;
+    color: $fontClear;
+    font-size: 16px;
+    margin-left: 15px;
+    float: right;
+    cursor: pointer;
+    outline: none;
+  }
+}

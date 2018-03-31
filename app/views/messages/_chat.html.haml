@@ -1,0 +1,31 @@
+.chat
+  .header
+    .left-header
+      .left-header__title
+        Chatroom Title
+        -# chatroom title will be dynamically generated
+      %ul{class: "left-header__members"}
+        Members:
+        %li{class: "member"}
+          Example 1
+        %li{class: "member"}
+          Example 2
+      -# member class will be dynamically generated
+    .right-header
+      %form
+      %a{class: "right-header__button", href: "http://www.mozilla.com/en-US/firefox/"}
+        Edit
+        -# link button will be changed in the future
+  = render "message"
+  .form
+    %form{class:"js-form", action: "", method: "post", enctype: "multipart/form-data"}
+      -# form will be commmunicating with the database, right now it does nothing
+      %input{class: "form__message", type: "text", name: "text", placeholder: "Hue hue hue he he he"}
+        -# input area for text messages, name = text
+      .form__mask
+        %label{class: "form__mask__image", for: "message_image"}
+          %i{class: "fa fa-picture-o icon"}
+          %input{class: "hidden", type: "file", name: "message[image]", id: "message_image"}
+            -# input area for images, name = message[image]
+      %input{class: "form__submit", type: "submit", name: "commit", value: "Send"}
+        -# submit action button, name = commit
