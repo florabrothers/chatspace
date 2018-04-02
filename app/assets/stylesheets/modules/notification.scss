@@ -1,9 +1,0 @@
-@import "../config/variable";
-@import "../mixin/*";
-
-.notification {
-  @include borderBox;
-  @include box ($skyBlue, 30px, 5px, 0, 0, 0);
-  text-align: center;
-  color: $fontClear;
-}

@@ -1,0 +1,15 @@
+@import "../config/variable";
+@import "../mixin/*";
+
+.flash {
+  @include borderBox;
+  text-align: center;
+  color: $fontClear;
+  &__alert{
+      @include box (#f35500, 30px, 5px, 0, 0, 0);
+  }
+  &__notice{
+      @include box ($skyBlue, 30px, 5px, 0, 0, 0);
+  }
+
+}
