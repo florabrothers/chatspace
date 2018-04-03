@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   def index
-    @users_group = current_user.groups.all
+    @users_group = current_user.groups
   end
 
 end
