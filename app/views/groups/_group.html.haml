@@ -1,9 +1,10 @@
 .groups
-  .group
-    %a{href: "http://www.mozilla.com/en-US/firefox/"}
-      -# link to chatroom will be changed in the future
-      .group__name
-        Chatroom 1
-      .group__message
-        Bacon ipsum dolor
-      -# group__name & __message will be dynamically generated
+  - @users_group.each do |i|
+    .group
+      %a{href: "http://www.mozilla.com/en-US/firefox/"}
+        -# link to chatroom will be changed in the future
+        .group__name
+          = i.name
+        .group__message
+          Bacon ipsum dolor
+        -# group__name & __message will be dynamically generated

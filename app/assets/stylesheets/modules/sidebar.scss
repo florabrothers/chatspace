@@ -35,6 +35,8 @@
   //Start of groups styling
   & .groups {
     @include box(#2f3e51, calc(100vh - 100px), 0, 20px, 0, 20px);
+    @include borderBox;
+    overflow: scroll;
 
     & .group {
       @include borderBox;
