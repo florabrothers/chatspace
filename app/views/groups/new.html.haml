@@ -30,7 +30,7 @@
         = f.label :member, "チャットメンバー", class: "chat-group-form__label"
       .chat-group-form__field--right
         / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
-        = collection_check_boxes(:group, :user_ids, User.all, :id, :name, include_hidden: false) do |t|
+        = collection_check_boxes(:group, :user_ids, User.where.not(id: current_user.id), :id, :name, include_hidden: false) do |t|
           - t.label { t.check_box + t.text }
 
         / この部分はインクリメンタルサーチ（ユーザー追加の非同期化のときに使用します

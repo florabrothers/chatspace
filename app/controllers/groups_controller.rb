@@ -4,14 +4,13 @@ class GroupsController < ApplicationController
   # end
 
   def new
-    @group = Group.new
+    @group = current_user.groups.new
   end
 
   def create
+    add_current_user
     @group = Group.new(group_params)
     if @group.save
-      @user = User.find(current_user.id)
-      @user.groups << Group.find(@group.id)
       flash[:notice] = "グループを作成しました"
       redirect_to action: "show", id: @group.id
     else
@@ -20,18 +19,21 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.all
-    @users_group = current_user.groups.all
+    @users_group = current_user.groups
     redirect_to controller: "messages", action: "index"
   end
 
   def edit
   end
 
+  def add_current_user
+    params[:group][:user_ids].push(current_user.id.to_s)
+  end
+
   private
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :user_ids => [])
   end
 
 end

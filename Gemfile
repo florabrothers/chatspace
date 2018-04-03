@@ -26,6 +26,7 @@ gem "haml-rails"
 # haml template
 gem "font-awesome-rails"
 # font template
+gem "pry-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
