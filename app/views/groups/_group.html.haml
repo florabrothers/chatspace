@@ -1,10 +1,10 @@
 .groups
   - @users_group.each do |i|
     .group
-      %a{href: "http://www.mozilla.com/en-US/firefox/"}
+      = link_to group_messages_path(current_user.groups.find_by(name: i.name)) do
         -# link to chatroom will be changed in the future
         .group__name
           = i.name
         .group__message
-          Bacon ipsum dolor
+          = i.show_last_message
         -# group__name & __message will be dynamically generated

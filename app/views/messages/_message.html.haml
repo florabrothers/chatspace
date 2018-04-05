@@ -1,0 +1,12 @@
+.messages
+  .message
+    - @messages.each do |m|
+      .upper-message
+        .upper-message__username
+          = m.user.name
+        .upper-message__date
+          = m.created_at.to_s[0..15]
+      -# upper-messages will be dynamically generated
+      .lower-message
+        %p{class:"lower-message__content"}
+          = m.text
