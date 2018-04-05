@@ -27,6 +27,10 @@ gem "haml-rails"
 gem "font-awesome-rails"
 # font template
 gem "pry-rails"
+# for rails console
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+# for messaging app
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

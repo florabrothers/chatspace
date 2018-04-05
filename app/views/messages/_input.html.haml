@@ -1,0 +1,8 @@
+.form
+  = form_for [@group, @message] do |f|
+    = f.text_field :text, class: "form__message", placeholder: "Hue hue hue he he he"
+    .form__mask
+      = f.label :message_image, class: "form__mask__image" do
+        = fa_icon "picture-o", class: "icon"
+        = f.file_field :message_image, class: "hidden"
+    = f.submit "Send", class: "form__submit"
