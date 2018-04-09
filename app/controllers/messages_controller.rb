@@ -9,7 +9,10 @@ class MessagesController < ApplicationController
   def create
     @message = @group.messages.new(input_params)
     if @message.save
-      redirect_to group_messages_path(@group)
+      respond_to do |format|
+        format.html {redirect_to group_messages_path(@group)}
+        format.json
+      end
     else
       @messages = @group.messages.includes(:user)
       flash.now[:alert] = "Message is blank"
@@ -22,6 +25,7 @@ class MessagesController < ApplicationController
   def find_group
     @group = Group.find(params[:group_id])
     @users_group = current_user.groups
+    gon.group = @group[:id]
   end
 
   def input_params

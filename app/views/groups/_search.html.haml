@@ -1,0 +1,7 @@
+= form_for @group do |f|
+  .chat-group-form__field--left
+    = f.label :members, "チャットメンバーを追加", class: "chat-group-form__label"
+  .chat-group-form__field--right
+    .chat-group-form__search.clearfix
+      = f.text_field :members, id: "user-search-field", class: "chat-group-form__input", placeholder: "who to add?"
+    #user-search-result
