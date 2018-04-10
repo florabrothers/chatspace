@@ -2,9 +2,9 @@ $(function() {
   function buildHTML(message) {
     // prebuild if function for the rendering of ajax
     var imgTag = `${message.image.url}`;
-    var swap =   `${message.text}<img src="${message.image.url}">`;
-    if (imgTag === "null" ){
-      swap = `${message.text}`
+    var swap =   `${message.text}`;
+    if (imgTag != "null" ){
+      swap = `${message.text}<img src="${message.image.url}">`
     }
 
     var html = `
