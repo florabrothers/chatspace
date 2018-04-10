@@ -1,7 +1,7 @@
 $(function() {
   function buildHTML(message) {
     // prebuild if function for the rendering of ajax
-    var swap =   `${message.text}`;
+    var swap = `${message.text}`;
     if (`${message.image.url}` != "null" ){
       swap = `${message.text}<img src="${message.image.url}">`
     }
