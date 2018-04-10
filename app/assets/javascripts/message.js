@@ -44,13 +44,16 @@ $(function() {
         } else {
           lastMessage = "An image is uploaded";
         }
+
         var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
         $(grouphref).find(".group__message").text(lastMessage);
+
+        // remove src with nil tag
+        $("img[src='']").remove();
 
         // Always show the bottom message
         var messageBody = document.querySelector('.messages');
         messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
-
 
       })
       .fail(function() {
