@@ -1,5 +1,12 @@
 $(function() {
   function buildHTML(message) {
+    // prebuild if function for the rendering of ajax
+    var imgTag = `${message.image.url}`;
+    var swap =   `${message.text}<img src="${message.image.url}">`;
+    if (imgTag === "null" ){
+      swap = `${message.text}`
+    }
+
     var html = `
                   <div class="upper-message">
                     <div class="upper-message__username">
@@ -10,10 +17,9 @@ $(function() {
                     </div>
                   </div>
                   <div class="lower-message">
-                    <p class="lower-message__content">
-                        ${message.text}
-                        ${message.image}
-                    </p>
+                    <p class="lower-message__content">`
+                      +  swap +
+                    `</p>
                   </div>
                 `
     return html;
@@ -39,7 +45,7 @@ $(function() {
 
         // replacing group message in sidebar (a little bit spaghetti)
         var lastMessage = $(".lower-message__content").last();
-        if (lastMessage.find("img").attr("src") === "") {
+        if (lastMessage.find("img").length === 0) {
           lastMessage = $(".lower-message__content").last().text();
         } else {
           lastMessage = "An image is uploaded";
@@ -47,9 +53,6 @@ $(function() {
 
         var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
         $(grouphref).find(".group__message").text(lastMessage);
-
-        // remove src with nil tag
-        $("img[src='']").remove();
 
         // Always show the bottom message
         var messageBody = document.querySelector('.messages');
