@@ -40,7 +40,6 @@ $(function() {
 
   // add user to list
   $(document).on("click", ".user-search-add", function() {
-    console.log("clicked");
     var id = $(this).attr("data-user-id");
     var name = $(this).attr("data-user-name");
     $(this).parent().remove();
