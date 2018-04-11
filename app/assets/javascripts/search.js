@@ -4,6 +4,7 @@ $(function() {
 
   // build list html
   function buildList(user) {
+    // does not duplicate usernames that are already added
     var names = $(".chat-group-user__name").text()
     if (names.indexOf(`${user.name}`) < 0){
       var html = `
