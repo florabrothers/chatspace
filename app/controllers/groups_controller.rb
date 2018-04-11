@@ -28,14 +28,6 @@ class GroupsController < ApplicationController
     @group = current_user.groups.find(params[:id])
   end
 
-  def search
-    @users = User.where('name like ?', "%#{params[:keyword]}%")
-    respond_to do |format|
-      format.html
-      format.json
-    end
-  end
-
   def update
     add_current_user
     @group = current_user.groups.find(params[:id])

@@ -4,7 +4,7 @@
     -# username will be dynamically generated
     %ul{class: "header__list"}
       %li{class: "list"}
-        = link_to new_group_path do
+        = link_to new_group_path, data: { turbolinks: 'false'} do
           -# replace button links in the future
           %i{class: "fa fa-pencil-square-o icon"}
       %li{class: "list"}
