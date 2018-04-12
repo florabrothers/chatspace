@@ -9,7 +9,7 @@
           %li{class: "member"}
             = i[:name]
     .right-header
-      = link_to edit_group_path(@group), class: "right-header__button" do
+      = link_to edit_group_path(@group), class: "right-header__button", data: { turbolinks: 'false'} do
         Edit
   = render "message"
   = render "input"

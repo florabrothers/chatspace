@@ -14,24 +14,12 @@
       .chat-group-form__field--right
         = f.text_field :name, placeholder: "グループ名を入力してください", class: "chat-group-form__input", id: "chat_group_name"
     .chat-group-form__field.clearfix
-      = render "groups/search"
+      = render template: "users/index"
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
         = f.label :member, "チャットメンバー", class: "chat-group-form__label"
       .chat-group-form__field--right
-        / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
-        = collection_check_boxes(:group, :user_ids, User.where.not(id: current_user.id), :id, :name, include_hidden: false) do |t|
-          - t.label { t.check_box + t.text }
-
-          -# start
-
-        #chat-group-users
-          #chat-group-user-22.chat-group-user.clearfix
-            %input{:name => "chat_group[user_ids][]", :type => "hidden", :value => "22"}/
-            %p.chat-group-user__name seo_kyohei
-
-            -# end
-
+        = render "users/list"
     .chat-group-form__field.clearfix
       .chat-group-form__field--left
       .chat-group-form__field--right
