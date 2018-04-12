@@ -1,7 +1,6 @@
 .messages
-  -# = render @message
-  .message
-    - @messages.each do |m|
+  - @messages.each do |m|
+    %div{class: "message", data: {id: m.id}}
       .upper-message
         .upper-message__username
           = m.user.name
