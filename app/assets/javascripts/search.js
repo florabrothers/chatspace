@@ -6,7 +6,7 @@ $(function() {
   function buildList(user) {
     // does not duplicate usernames that are already added
     var names = $(".chat-group-user__name").text()
-    if (names.indexOf(`${user.name}`) < 0){
+    if (names.indexOf(`${user.name}`) < 0) {
       var html = `
         <div class="chat-group-user clearfix">
           <p class="chat-group-user__name">${user.name}</p>
@@ -39,7 +39,7 @@ $(function() {
   }
 
   // add user to list
-  $(document).on("click", ".user-search-add", function() {
+  list.on("click", ".user-search-add", function() {
     var id = $(this).attr("data-user-id");
     var name = $(this).attr("data-user-name");
     $(this).parent().remove();
@@ -47,7 +47,7 @@ $(function() {
   })
 
   // remove user from list
-  $(document).on("click", ".user-search-remove", function() {
+  $("#chat-group-users").on("click", ".user-search-remove", function() {
     $(this).parent().remove();
   })
 
