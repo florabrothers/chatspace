@@ -1,13 +1,12 @@
 .messages
-  -# = render @message
-  .message
-    - @messages.each do |m|
+  - @messages.each do |message|
+    .message{data: {id: message.id}}
       .upper-message
         .upper-message__username
-          = m.user.name
+          = message.user.name
         .upper-message__date
-          = m.created_at.to_s[0..15]
+          = message.created_at.to_s[0..15]
       .lower-message
         %p{class:"lower-message__content"}
-          = m.text
-          = image_tag m.image
+          = message.text
+          = image_tag message.image

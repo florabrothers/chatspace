@@ -2,27 +2,30 @@ $(function() {
   function buildHTML(message) {
     // prebuild if function for the rendering of ajax
     var swap = `${message.text}`;
-    if (`${message.image.url}` != "null" ){
+    if (`${message.image.url}` != "null") {
       swap = `${message.text}<img src="${message.image.url}">`
     }
 
     var html = `
-                  <div class="upper-message">
-                    <div class="upper-message__username">
-                        ${message.user_name}
+                  <div class="message" data-id=${message.id}>
+                    <div class="upper-message">
+                      <div class="upper-message__username">
+                          ${message.username}
+                      </div>
+                      <div class="upper-message__date">
+                          ${message.created_at}
+                      </div>
                     </div>
-                    <div class="upper-message__date">
-                        ${message.created_at}
+                    <div class="lower-message">
+                      <p class="lower-message__content">`
+                      + swap +
+                      `</p>
                     </div>
                   </div>
-                  <div class="lower-message">
-                    <p class="lower-message__content">`
-                      +  swap +
-                    `</p>
-                  </div>
-                `
+                  `
     return html;
   }
+
   $("#new_message").on("submit", function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -37,7 +40,7 @@ $(function() {
       })
       .done(function(data) {
         var html = buildHTML(data);
-        $(".message").append(html);
+        $(".messages").append(html);
         $(".form__message").val("");
         $(".hidden").val("");
         $(".form__submit").removeAttr("disabled")
@@ -53,13 +56,40 @@ $(function() {
         var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
         $(grouphref).find(".group__message").text(lastMessage);
 
-        // Always show the bottom message
-        var messageBody = document.querySelector('.messages');
-        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+        autoButtom();
 
       })
       .fail(function() {
         alert("error");
       });
   });
-});
+
+  // autorefresh
+  setInterval(function() {
+      var message_id = $('.message:last').data('id');
+      $.ajax({
+        url: window.location.href,
+        dataType: "json",
+        type: 'GET',
+        data: {
+          id: message_id
+        },
+      })
+      .done(function(json) {
+        json.forEach(function(message){
+          $(".messages").append(buildHTML(message));
+        })
+        autoButtom();
+
+      })
+      .fail(function(data) {
+        alert("refresh went wrong");
+      })
+    } , 5000 )
+
+    function autoButtom (){
+      var messageBody = $('.messages')[0];
+      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight
+    }
+
+})

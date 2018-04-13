@@ -68,7 +68,7 @@ $(function() {
         if (users.length !== 0) {
           users.forEach(function(user) {
             buildList(user);
-          });
+          })
         } else {
           noUser("No such user");
         }
