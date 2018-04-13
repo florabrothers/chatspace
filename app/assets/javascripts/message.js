@@ -56,6 +56,8 @@ $(function() {
         var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
         $(grouphref).find(".group__message").text(lastMessage);
 
+        autoBottom()
+
       })
       .fail(function() {
         alert("error");
@@ -77,12 +79,18 @@ $(function() {
         })
         $('.messages').html(insertHTML);
 
-        // Always show the bottom message
-        var messageBody = document.querySelector('.messages');
-        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+        autoBottom()
+
       })
       .fail(function(data) {
         alert("refresh went wrong");
       })
     } , 5000 )
+
+    // Always show the bottom message
+    function autoBottom (){
+      var messageBody = $(".messages")[0];
+      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    }
+
 })
