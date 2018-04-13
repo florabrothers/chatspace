@@ -10,7 +10,7 @@ $(function() {
                   <div class="message" data-id=${message.id}>
                     <div class="upper-message">
                       <div class="upper-message__username">
-                          ${message.user_name}
+                          ${message.username}
                       </div>
                       <div class="upper-message__date">
                           ${message.created_at}
@@ -56,7 +56,7 @@ $(function() {
         var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
         $(grouphref).find(".group__message").text(lastMessage);
 
-        autoBottom()
+        autoButtom();
 
       })
       .fail(function() {
@@ -66,20 +66,22 @@ $(function() {
 
   // autorefresh
   setInterval(function() {
+      var message_id = $('.message:last').data('id');
       $.ajax({
         url: window.location.href,
         dataType: "json",
-        processData: false,
-        contentType: false,
+        type: 'GET',
+        data: {
+          id: message_id
+        },
       })
       .done(function(json) {
+        // console.log(json)
         var insertHTML = "";
-        json.messages.forEach(function(message) {
-          insertHTML += buildHTML(message);
+        json.forEach(function(message){
+          $(".messages").append(buildHTML(message));
         })
-        $('.messages').html(insertHTML);
-
-        autoBottom()
+        autoButtom();
 
       })
       .fail(function(data) {
@@ -87,10 +89,9 @@ $(function() {
       })
     } , 5000 )
 
-    // Always show the bottom message
-    function autoBottom (){
-      var messageBody = $(".messages")[0];
-      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+    function autoButtom (){
+      var messageBody = $('.messages')[0];
+      messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight
     }
 
 })
