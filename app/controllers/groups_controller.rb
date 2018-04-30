@@ -44,7 +44,11 @@ class GroupsController < ApplicationController
   end
 
   def add_current_user
-    params[:group][:user_ids].push(current_user.id.to_s)
+    if params[:group][:user_ids] == nil 
+      params[:group][:user_ids] = [current_user.id.to_s]
+    else 
+      params[:group][:user_ids].push(current_user.id.to_s)
+    end
   end
 
   private
