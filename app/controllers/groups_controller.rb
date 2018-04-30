@@ -1,8 +1,11 @@
 class GroupsController < ApplicationController
-before_filter :require_login
 
   def index
-    @users_group = current_user.groups
+    if user_signed_in?
+      @users_group = current_user.groups
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def new
@@ -48,14 +51,6 @@ before_filter :require_login
 
   def group_params
     params.require(:group).permit(:name, user_ids: [])
-  end
-
-  def require_login
-    if user_signed_in?
-      super
-    else
-      redirect_to new_user_session_path
-    end
   end
 
 end
