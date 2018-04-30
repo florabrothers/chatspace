@@ -78,12 +78,19 @@ $(function() {
       .done(function(json) {
         json.forEach(function(message){
           $(".messages").append(buildHTML(message));
+          var lastMessage = $(".lower-message__content").last();
+          if (lastMessage.find("img").length === 0) {
+            lastMessage = $(".lower-message__content").last().text();
+          } else {
+            lastMessage = "An image is uploaded";
+          }
+
+          var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
+          $(grouphref).find(".group__message").text(lastMessage);
         })
         autoButtom();
-
       })
-      .fail(function(data) {
-        alert("refresh went wrong");
+      .fail(function () {
       })
     } , 5000 )
 
