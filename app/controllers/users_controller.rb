@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    flash[:alert] = "ログインまたは登録が必要です"
+    flash[:alert] = "You need to login"
     user = User.find(params[:id])
     sign_out user
     redirect_to new_user_session_path
