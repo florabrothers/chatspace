@@ -53,11 +53,8 @@ $(function() {
           lastMessage = "An image is uploaded";
         }
 
-        var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
-        $(grouphref).find(".group__message").text(lastMessage);
-
+        autoDisplayLastMsg(lastMessage)
         autoButtom();
-
       })
       .fail(function() {
         alert("error");
@@ -84,11 +81,9 @@ $(function() {
           } else {
             lastMessage = "An image is uploaded";
           }
-
-          var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
-          $(grouphref).find(".group__message").text(lastMessage);
+          autoDisplayLastMsg(lastMessage);
+          autoButtom();
         })
-        autoButtom();
       })
       .fail(function () {
       })
@@ -97,6 +92,11 @@ $(function() {
     function autoButtom (){
       var messageBody = $('.messages')[0];
       messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight
+    }
+
+  function autoDisplayLastMsg(lastMessage){
+      var grouphref = "a[href*=\'" + String(gon.group) + '/messages\']';
+      $(grouphref).find(".group__message").text(lastMessage);
     }
 
 })
